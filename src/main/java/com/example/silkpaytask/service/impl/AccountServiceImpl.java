@@ -10,6 +10,7 @@ import com.example.silkpaytask.mapper.AccountMapper;
 import com.example.silkpaytask.repository.AccountRepo;
 import com.example.silkpaytask.repository.UserDataRepository;
 import com.example.silkpaytask.service.AccountService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     TransactionServiceImpl transactionService;
 
+    @Transactional
     @Override
     public Account createNew(AccountDto accountDto) {
 
@@ -42,6 +44,7 @@ public class AccountServiceImpl implements AccountService {
 
         return accountRepo.save(account);
     }
+    @Transactional
     @Override
     public Account transfer(Long fromAccountId, Long toAccountId, BigDecimal amount) {
 
@@ -106,7 +109,7 @@ public class AccountServiceImpl implements AccountService {
         UserData userData = findUser(id);
         return userData.getAccount().getBalance();
     }
-
+    @Transactional
     @Override
     public Account topUp(Long accountId, BigDecimal amount) {
 
