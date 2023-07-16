@@ -42,7 +42,6 @@ public class AccountServiceImpl implements AccountService {
 
         return accountRepo.save(account);
     }
-
     @Override
     public Account transfer(Long fromAccountId, Long toAccountId, BigDecimal amount) {
 

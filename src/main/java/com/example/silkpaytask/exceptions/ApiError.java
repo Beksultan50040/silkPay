@@ -7,7 +7,6 @@ import java.util.List;
 
 @Data
 public class ApiError extends RuntimeException {
-
     private HttpStatus status;
     private String message;
     private List<String> errors;

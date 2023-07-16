@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.security.Principal;
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -29,9 +26,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto) {
 
-
         UserDto userDto = userService.register(signUpDto);
-
         userDto.setToken(userAuthProvider.generateToken(userDto.getEmail()));
 
         return ResponseEntity.ok(userDto);
